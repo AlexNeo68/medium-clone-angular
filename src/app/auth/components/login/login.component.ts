@@ -4,7 +4,8 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { BackendErrorInterface } from 'src/app/shared/types/backendError.interface';
 import { AuthService } from '../../services/auth.service';
-import { loginAction } from '../../store/actions';
+import { loginAction } from '../../store/actions/login.action';
+
 import {
   isSubmittingSelector,
   validationErrorsSelector,
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private store: Store,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initializeForm();

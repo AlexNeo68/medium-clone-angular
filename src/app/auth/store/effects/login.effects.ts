@@ -6,11 +6,8 @@ import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { PersistanceService } from 'src/app/shared/services/persistence.service';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { AuthService } from '../../services/auth.service';
-import {
-  loginAction,
-  loginFailureAction,
-  loginSuccessAction,
-} from '../actions';
+import { loginAction, loginSuccessAction, loginFailureAction } from '../actions/login.action';
+
 
 @Injectable()
 export class LoginEffect {
@@ -19,7 +16,7 @@ export class LoginEffect {
     private authService: AuthService,
     private persistanceService: PersistanceService,
     private router: Router
-  ) {}
+  ) { }
   register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginAction),

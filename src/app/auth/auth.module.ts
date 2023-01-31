@@ -12,6 +12,7 @@ import { LoginComponent } from 'src/app/auth/components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { LoginEffect } from './store/effects/login.effects';
 import { RegisterEffect } from './store/effects/register.effects';
+import { GetCurrentUserEffect } from './store/effects/getCurrentUser.effect';
 
 const routes: Routes = [
   {
@@ -29,10 +30,10 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducer),
-    EffectsModule.forFeature([RegisterEffect, LoginEffect]),
+    EffectsModule.forFeature([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
     BackendErrorMessagesModule,
   ],
   declarations: [RegisterComponent, LoginComponent],
   providers: [AuthService, PersistanceService],
 })
-export class AuthModule {}
+export class AuthModule { }
