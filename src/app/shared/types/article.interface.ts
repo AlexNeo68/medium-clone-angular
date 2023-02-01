@@ -9,5 +9,6 @@ export interface ArticleInterface {
   favoritesCount: number;
   tagList: string[];
   title: string;
+  slug: string;
   updatedAt: string;
 }
