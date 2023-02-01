@@ -1,25 +1,40 @@
-<mc-error-message *ngIf="error$|async"></mc-error-message>
-<mc-loading *ngIf="isLoading$|async"></mc-loading>
-<div *ngIf="(feed$|async)?.articles">
-  <div class="article-preview" *ngFor="let article of (feed$|async)?.articles">
-
+<mc-error-message *ngIf="error$ | async"></mc-error-message>
+<mc-loading *ngIf="isLoading$ | async"></mc-loading>
+<div *ngIf="(feed$ | async)?.articles">
+  <div
+    class="article-preview"
+    *ngFor="let article of (feed$ | async)?.articles"
+  >
     <div class="app-article-meta">
       <div class="article-meta">
         <a [routerLink]="['/profiles', article.author.username]">
-          <img [src]="article.author.image"></a>
+          <img [src]="article.author.image"
+        /></a>
         <div class="info">
-          <a class="author" [routerLink]="['/profiles', article.author.username]">
-            {{ article.author.username }}</a>
+          <a
+            class="author"
+            [routerLink]="['/profiles', article.author.username]"
+          >
+            {{ article.author.username }}</a
+          >
 
           <span class="date"> {{ article.updatedAt }} </span>
         </div>
       </div>
     </div>
 
-
     <a class="preview-link" [routerLink]="['/articles', article.slug]">
       <h1>{{ article.title }}</h1>
-      <p>{{ article.description }}</p><span>Read more...</span>
+      <p>{{ article.description }}</p>
+      <span>Read more...</span>
     </a>
   </div>
+
+  <mc-pagination
+    [url]="baseUrl"
+    [currentPage]="currentPage"
+    [limit]="limit"
+    [total]="(feed$ | async)?.articlesCount"
+  >
+  </mc-pagination>
 </div>
