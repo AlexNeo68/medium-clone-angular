@@ -19,6 +19,7 @@
       <h1>{{ article.title }}</h1>
       <p>{{ article.description }}</p>
       <span>Read more...</span>
+      <mc-tags-list [tags]="article.tagList"></mc-tags-list>
     </a>
   </div>
 
