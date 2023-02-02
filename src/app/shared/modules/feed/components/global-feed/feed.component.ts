@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import queryString from 'query-string';
 import { Observable, Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { getFeedAction } from '../../store/actions/get-feed.action';
@@ -32,11 +33,11 @@ export class FeedComponent implements OnInit, OnDestroy {
     private store: Store,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.fetchData();
     this.initializeValue();
+    this.initializeListener();
   }
 
   ngOnDestroy(): void {
@@ -54,11 +55,25 @@ export class FeedComponent implements OnInit, OnDestroy {
     this.queryParamsSubscription = this.route.queryParams.subscribe(
       (params: Params) => {
         this.currentPage = Number(params['page'] || '1');
+
+        this.fetchFeed();
       }
     );
   }
 
-  fetchData() {
-    this.store.dispatch(getFeedAction({ url: this.apiUrlProps }));
+  fetchFeed(): void {
+    const offset = this.currentPage * this.limit - this.limit;
+    const parsedUrl = queryString.parseUrl(this.router.url);
+    const stringifiedParams = queryString.stringify({
+      limit: this.limit,
+      offset,
+      ...parsedUrl.query
+    });
+
+    const fullUrl = `${this.apiUrlProps}?${stringifiedParams}`;
+
+    this.store.dispatch(getFeedAction({ url: fullUrl }));
   }
+
+
 }
