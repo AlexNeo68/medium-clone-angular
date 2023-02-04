@@ -5,7 +5,8 @@ import { PopularTagType } from "src/app/shared/types/popular-tag.type";
 import { environment } from "src/environments/environment";
 import { GetPopularTagsResponseInterface } from "../types/get-popular-tags-response.interface";
 
-Injectable()
+@Injectable()
+
 export class TagsPopularService {
 
   constructor(private httpClient: HttpClient) { }

@@ -13,13 +13,13 @@ import { errorSelector, isLoadingSelector, tagsPopularSelector } from '../../sto
 export class TagsPopularComponent implements OnInit {
   isLoading$: Observable<boolean>;
   error$: Observable<string | null>
-  tagsPopular$: Observable<PopularTagType[]>
+  tagsPopular$: Observable<PopularTagType[] | null>
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.initializeValues();
     this.fetchData();
+    this.initializeValues();
   }
 
   initializeValues(): void {
