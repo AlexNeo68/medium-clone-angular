@@ -16,7 +16,7 @@ export class FeedTogglerComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.initializeValues;
+    this.initializeValues();
   }
 
   initializeValues() {
