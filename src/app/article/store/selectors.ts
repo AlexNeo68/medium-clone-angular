@@ -15,7 +15,7 @@ export const errorSelector = createSelector(
 );
 
 
-export const dataSelector = createSelector(
+export const articleSelector = createSelector(
   articleFeatureSelector,
   (articleState: ArticleStateInterface) => articleState.data
 );

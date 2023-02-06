@@ -1,8 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';
+import { getArticleAction } from '../../store/actions/get-article.action';
+import { articleSelector, errorSelector, isLoadingSelector } from '../../store/selectors';
 
 
 @Component({
@@ -15,32 +18,43 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   isLoading$: Observable<boolean>;
   error$: Observable<null | string>;
-  article$: Observable<ArticleInterface | null>;
+
+  slug: string;
+
+  article: ArticleInterface | null
+  articleSubscription: Subscription
 
 
   constructor(
-    private store: Store
+    private store: Store,
+    private route: ActivatedRoute
   ) { }
 
 
 
   ngOnInit(): void {
     this.initializeValue();
-    this.initializeListener();
+    this.fetchData();
   }
 
   ngOnDestroy(): void {
+    this.articleSubscription.unsubscribe();
   }
 
-
-  initializeValue() {
+  initializeValue(): void {
+    this.slug = this.route.snapshot.paramMap.get('slug')
+    this.error$ = this.store.pipe(select(errorSelector));
+    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
   }
 
-  initializeListener() {
-
+  initializeListener(): void {
+    this.articleSubscription = this.store.pipe(select(articleSelector)).subscribe((article: ArticleInterface) => {
+      this.article = article;
+    });
   }
 
-
-
+  fetchData(): void {
+    this.store.dispatch(getArticleAction({ slug: this.slug }))
+  }
 
 }
