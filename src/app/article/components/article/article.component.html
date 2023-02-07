@@ -1,1 +1,40 @@
-It is article component!
+<div class="article-page" *ngIf="article">
+  <div class="banner">
+    <div class="container">
+      <h1>{{ article.title }}</h1>
+
+      <div class="article-meta">
+        <a [routerLink]="['/profiles', article.author.username]">
+          <img [src]="article.author.image"></a>
+
+        <div class="info">
+          <a class="author" [routerLink]="['/profiles', article.author.username]"> {{ article.author.username }} </a>
+          <span class="date">{{ article.createdAt }}</span>
+        </div>
+        <span *ngIf="isAuthor$ | async">
+          <a class="btn btn-sm btn-outline-secondary"><i class="ion-edit"></i> Edit
+            Article </a>
+          <button class="btn btn-sm btn-outline-danger" (click)="deleteArticle()" style="margin-left: 10px;"><i
+              class="ion-trash-a"></i> Delete
+            Article
+          </button>
+        </span>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="container page">
+    <mc-loading *ngIf="isLoading$|async"></mc-loading>
+    <mc-error-message *ngIf="error$|async"></mc-error-message>
+    <div class="row article-content">
+      <div class="col-md-12">
+        <div>
+          <p>{{ article.body }}</p>
+        </div>
+        <mc-tags-list [tags]="article.tagList"></mc-tags-list>
+      </div>
+    </div>
+
+  </div>
+</div>
