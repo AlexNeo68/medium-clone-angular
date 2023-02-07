@@ -16,6 +16,7 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { YourFeedModule } from './yourFeed/your-feed.module';
 import { TagFeedModule } from './tagFeed/tag-feed.module';
 import { ArticleModule } from './article/article.module';
+import { CreateArticleModule } from './create-article/create-article.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { ArticleModule } from './article/article.module';
     YourFeedModule,
     TagFeedModule,
     StoreRouterConnectingModule.forRoot(),
+    CreateArticleModule,
     ArticleModule
   ],
   providers: [
