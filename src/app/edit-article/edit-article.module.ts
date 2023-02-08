@@ -7,7 +7,7 @@ import { ArticleFormModule } from "../shared/modules/article-form/article-form.m
 import { CreateArticleComponent } from './components/create-article/create-article.component';
 import { CreateArticleEffect } from "./store/effects/create-article.effect";
 import { reducer } from 'src/app/create-article/store/reducers'
-import { CreateArticleService } from "./services/create-article.service";
+import { CreateArticleService, EditArticleService } from "./services/edit-article.service";
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
   declarations: [
     CreateArticleComponent
   ],
-  providers: [CreateArticleService]
+  providers: [EditArticleService]
 })
 
-export class CreateArticleModule { }
+export class EditArticleModule { }
