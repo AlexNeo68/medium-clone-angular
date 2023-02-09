@@ -12,7 +12,8 @@
           <span class="date">{{ article.createdAt }}</span>
         </div>
         <span *ngIf="isAuthor$ | async">
-          <a class="btn btn-sm btn-outline-secondary"><i class="ion-edit"></i> Edit
+          <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/articles', article.slug, 'edit']"><i
+              class="ion-edit"></i> Edit
             Article </a>
           <button class="btn btn-sm btn-outline-danger" (click)="deleteArticle()" style="margin-left: 10px;"><i
               class="ion-trash-a"></i> Delete
