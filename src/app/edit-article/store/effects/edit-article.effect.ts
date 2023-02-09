@@ -4,40 +4,41 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';
-import { CreateArticleService } from '../../services/edit-article.service';
-import { createArticleAction, createArticleFailureAction, createArticleSuccessAction } from '../actions/create-article.action';
-
-
-
+import { EditArticleService } from '../../services/edit-article.service';
+import {
+  editArticleAction,
+  editArticleFailureAction,
+  editArticleSuccessAction,
+} from '../actions/edit-article.action';
 
 @Injectable()
-export class CreateArticleEffect {
+export class EditArticleEffect {
   constructor(
     private actions$: Actions,
     private router: Router,
-    private createArticleService: CreateArticleService
-  ) { }
-  createArticle$ = createEffect(() =>
+    private editArticleService: EditArticleService
+  ) {}
+  editArticle$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(createArticleAction),
-      switchMap(({ articleInput }) => {
-        return this.createArticleService.createArticle(articleInput).pipe(
+      ofType(editArticleAction),
+      switchMap(({ slug, articleInput }) => {
+        return this.editArticleService.editArticle(slug, articleInput).pipe(
           map((article: ArticleInterface) => {
-            return createArticleSuccessAction({ article });
+            return editArticleSuccessAction({ article });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
-              createArticleFailureAction({ errors: errorResponse.error.errors })
+              editArticleFailureAction({ errors: errorResponse.error.errors })
             );
           })
         );
       })
     )
   );
-  redirectAfterRegister$ = createEffect(
+  redirectAfterUpdate$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(createArticleSuccessAction),
+        ofType(editArticleSuccessAction),
         tap(({ article }) => {
           this.router.navigate(['/articles', article.slug]);
         })

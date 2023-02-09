@@ -1,15 +1,29 @@
-import { createSelector } from "@ngrx/store";
-import { AppStateInterface } from "src/app/shared/types/appState.interface";
-import { CreateArticleStateInterface } from "../types/edit-article-state.interface";
+import { createSelector } from '@ngrx/store';
+import { EditArticleStateInterface } from 'src/app/edit-article/types/edit-article-state.interface';
+import { AppStateInterface } from 'src/app/shared/types/appState.interface';
 
-export const createArticleFeatureSelector = (state: AppStateInterface) => state.createArticle;
+export const editArticleFeatureSelector = (state: AppStateInterface) =>
+  state.editArticle;
 
-export const isSubmittingCreateArticleSelector = createSelector(
-  createArticleFeatureSelector,
-  (createArticleState: CreateArticleStateInterface) => createArticleState.isSubmitting
+export const isSubmittingEditArticleSelector = createSelector(
+  editArticleFeatureSelector,
+  (createArticleState: EditArticleStateInterface) =>
+    createArticleState.isSubmitting
 );
 
-export const validationErrorsCreateArticleSelector = createSelector(
-  createArticleFeatureSelector,
-  (createArticleState: CreateArticleStateInterface) => createArticleState.validationErrors
+export const validationErrorsEditArticleSelector = createSelector(
+  editArticleFeatureSelector,
+  (createArticleState: EditArticleStateInterface) =>
+    createArticleState.validationErrors
+);
+
+export const isLoadingEditArticleSelector = createSelector(
+  editArticleFeatureSelector,
+  (createArticleState: EditArticleStateInterface) =>
+    createArticleState.isLoading
+);
+
+export const articleEditArticleSelector = createSelector(
+  editArticleFeatureSelector,
+  (createArticleState: EditArticleStateInterface) => createArticleState.article
 );
