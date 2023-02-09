@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { GetArticleResponseInterface } from "src/app/shared/types/get-article-response.interface";
+import { ArticleInterface } from "src/app/shared/types/article.interface";
 import { ActionTypes } from "../actionTypes";
 
 export const getArticleAction = createAction(
@@ -9,7 +9,7 @@ export const getArticleAction = createAction(
 
 export const getArticleSuccessAction = createAction(
   ActionTypes.GET_ARTICLE_SUCCESS,
-  props<GetArticleResponseInterface>()
+  props<{ article: ArticleInterface }>()
 );
 
 export const getArticleFailureAction = createAction(
