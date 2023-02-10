@@ -18,6 +18,7 @@ import { TagFeedModule } from './tagFeed/tag-feed.module';
 import { ArticleModule } from './article/article.module';
 import { CreateArticleModule } from './create-article/create-article.module';
 import { EditArticleModule } from 'src/app/edit-article/edit-article.module';
+import { SettingsModule } from 'src/app/settings/settings.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +37,8 @@ import { EditArticleModule } from 'src/app/edit-article/edit-article.module';
     StoreRouterConnectingModule.forRoot(),
     CreateArticleModule,
     ArticleModule,
-    EditArticleModule
+    EditArticleModule,
+    SettingsModule
   ],
   providers: [
     PersistanceService,
