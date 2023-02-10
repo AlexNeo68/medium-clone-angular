@@ -23,7 +23,9 @@
                 placeholder="Email" type="email"></fieldset>
             <fieldset class="form-group"><input class="form-control form-control-lg" formControlName="password"
                 placeholder="New Password" type="password">
-            </fieldset><button class="btn btn-lg btn-primary pull-xs-right" type="submit"> Update Settings </button>
+            </fieldset>
+            <button [disabled]="form.invalid||(isSubmitting$|async)" class="btn btn-lg btn-primary pull-xs-right"
+              type="submit"> Update Settings </button>
           </fieldset>
         </form>
         <hr><button class="btn btn-outline-danger"> Or click here to logout. </button>
