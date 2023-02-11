@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
+import { AddToFavoritesModule } from "src/app/shared/modules/add-to-favorites/add-to-favorites.module";
 import { ErrorMessageModule } from "../error-message/error-message.module";
 import { LoadingModule } from "../loading/loading.module";
 import { PaginationModule } from "../pagination/pagination.module";
@@ -13,7 +14,7 @@ import { GetFeedEffect } from "./store/effects/get-feed.effect";
 import { reducer } from "./store/reducers";
 
 @NgModule({
-  imports: [CommonModule, StoreModule.forFeature('feed', reducer), EffectsModule.forFeature([GetFeedEffect]), RouterModule, LoadingModule, ErrorMessageModule, PaginationModule, TagsListModule],
+  imports: [CommonModule, StoreModule.forFeature('feed', reducer), EffectsModule.forFeature([GetFeedEffect]), RouterModule, LoadingModule, ErrorMessageModule, PaginationModule, TagsListModule, AddToFavoritesModule],
   declarations: [
     FeedComponent
   ],

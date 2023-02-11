@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { logoutAction } from 'src/app/auth/store/actions/logout.action';
 import { updateCurrentUserSuccessAction } from 'src/app/auth/store/actions/update-current-user.action';
 import { AuthStateInterface } from 'src/app/auth/types/authState.interface';
 import { getCurrentUserAction, GetCurrentUserFailureAction, getCurrentUserSuccessAction } from './actions/getCurrentUser.action';
@@ -70,6 +71,10 @@ const authReducer = createReducer(
     isLoggedIn: true,
     currentUser: action.currentUser
   })),
+  on(logoutAction, (state): AuthStateInterface => ({
+    ...initialState,
+    isLoggedIn: false
+  }))
 );
 
 export function reducer(state: AuthStateInterface, action: Action) {

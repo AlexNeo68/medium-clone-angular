@@ -12,6 +12,8 @@
 
           <span class="date"> {{ article.updatedAt }} </span>
         </div>
+        <mc-add-to-favorites [favoritesCount]="article.favoritesCount" [isFavorited]="article.favorited"
+          [articleSlug]="article.slug"></mc-add-to-favorites>
       </div>
     </div>
 
