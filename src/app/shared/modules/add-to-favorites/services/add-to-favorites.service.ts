@@ -1,21 +1,20 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
-import { ArticleInterface } from "src/app/shared/types/article.interface";
-import { GetArticleResponseInterface } from "src/app/shared/types/get-article-response.interface";
-import { environment } from "src/environments/environment";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { ArticleInterface } from 'src/app/shared/types/article.interface';
+import { GetArticleResponseInterface } from 'src/app/shared/types/get-article-response.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AddToFavoriteService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getUrl(slug: string): string {
-    return `${environment.apiUrl}/articles/${slug}/favorite`
+    return `${environment.apiUrl}/articles/${slug}/favorite`;
   }
 
   getArticle(response: GetArticleResponseInterface): ArticleInterface {
-    return response.article
+    return response.article;
   }
 
   addToFavorites(slug: string): Observable<ArticleInterface> {
