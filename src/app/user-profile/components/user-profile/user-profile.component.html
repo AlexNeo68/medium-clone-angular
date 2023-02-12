@@ -5,8 +5,8 @@
       <div class="row">
         <div class="col-xs-12 col-md-10 offset-md-1"><img class="user-img" [src]="userProfile.image">
           <h4>{{ userProfile.username }}</h4>
-          <p></p>
-          BUTTON FOLLOW
+          <p *ngIf="userProfile.bio">{{ userProfile.bio }}</p>
+          <mc-user-follow [username]="userProfile.username" [isFollowing]="userProfile.following"></mc-user-follow>
           <a *ngIf="isCurrentUserProfile$|async" class="btn btn-sm btn-outline-secondary"
             [routerLink]="['/settings']"><i class="ion-gear-a"></i> Edit Profile Settings </a>
         </div>

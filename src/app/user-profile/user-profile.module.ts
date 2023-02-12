@@ -6,6 +6,7 @@ import { StoreModule } from "@ngrx/store";
 import { FeedModule } from "src/app/shared/modules/feed/feed.module";
 
 import { LoadingModule } from "src/app/shared/modules/loading/loading.module";
+import { UserFollowModule } from "src/app/shared/modules/user-follow/user-follow.module";
 import { UserProfileService } from "src/app/user-profile/services/user-profile.service";
 import { UserProfileEffect } from "src/app/user-profile/store/effects/get-user-profile.effect";
 import { reducer } from "src/app/user-profile/store/reducers";
@@ -29,7 +30,8 @@ const routes: Routes = [
     StoreModule.forFeature('userProfile', reducer),
     EffectsModule.forFeature([UserProfileEffect]),
     LoadingModule,
-    FeedModule
+    FeedModule,
+    UserFollowModule
   ],
   declarations: [
     UserProfileComponent
