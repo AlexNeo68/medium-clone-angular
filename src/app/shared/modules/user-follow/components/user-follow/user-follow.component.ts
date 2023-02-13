@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { userFollowingAction } from 'src/app/shared/modules/user-follow/store/actions/user-following.action';
 
 @Component({
   selector: 'mc-user-follow',
@@ -10,6 +12,8 @@ export class UserFollowComponent implements OnInit {
   @Input('username') usernameProps: string
   @Input('isFollowing') isFollowingProps: boolean
 
+  constructor(private store: Store) { }
+
   isFollowing: boolean;
 
   ngOnInit(): void {
@@ -17,6 +21,7 @@ export class UserFollowComponent implements OnInit {
   }
 
   toggleFollow(): void {
+    this.store.dispatch(userFollowingAction({ isFollowing: this.isFollowing, username: this.usernameProps }))
     this.isFollowing = !this.isFollowing
   }
 }
