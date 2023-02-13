@@ -1,10 +1,12 @@
 import { HttpErrorResponse } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, of, switchMap } from "rxjs";
 import { CommentsService } from "src/app/shared/modules/comments/services/comments.service";
 import { commentSaveAction, commentSaveActionFailure, commentSaveActionSuccess } from "src/app/shared/modules/comments/store/actions/comment-save.action";
 import { CommentInterface } from "src/app/shared/modules/comments/types/comment.interface";
 
+@Injectable()
 export class CommentSaveEffect {
   constructor(private actions$: Actions, private commentsService: CommentsService) { }
   commentSave$ = createEffect(() => this.actions$.pipe(
