@@ -18,3 +18,8 @@ export const dataCommentSelector = createSelector(
   commentsFeatureSelector,
   (commentsState: CommentsStateInterface) => commentsState.data
 );
+
+export const isLoadingGetCommentsSelector = createSelector(
+  commentsFeatureSelector,
+  (commentsState: CommentsStateInterface) => commentsState.isLoading
+);

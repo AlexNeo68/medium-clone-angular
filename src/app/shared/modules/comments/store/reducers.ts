@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { commentSaveAction, commentSaveActionFailure, commentSaveActionSuccess } from "src/app/shared/modules/comments/store/actions/comment-save.action";
+import { getCommentsAction, getCommentsFailureAction, getCommentsSuccessAction } from "src/app/shared/modules/comments/store/actions/comments-get.action";
 import { CommentsStateInterface } from "src/app/shared/modules/comments/types/comments-state.interface";
 
 const initialState: CommentsStateInterface = {
@@ -29,7 +30,18 @@ const commentsReducer = createReducer(initialState,
     ...state,
     isSubmitting: false,
     validationErrors: action.errors,
-  }))
+  })),
+
+  on(getCommentsAction, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+
+  on(getCommentsSuccessAction, (state, action) => ({
+    ...state,
+    isLoading: false,
+    data: action.comments
+  })),
 )
 
 export function reducer(state: CommentsStateInterface, action: Action) {

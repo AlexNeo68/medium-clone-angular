@@ -10,6 +10,7 @@ import { CommentListComponent } from "src/app/shared/modules/comments/components
 import { CommentsComponent } from "src/app/shared/modules/comments/components/comments/comments.component";
 import { CommentsService } from "src/app/shared/modules/comments/services/comments.service";
 import { CommentSaveEffect } from "src/app/shared/modules/comments/store/effects/comment-save.effect";
+import { CommentsGetEffect } from "src/app/shared/modules/comments/store/effects/comments-get.effiect";
 import { reducer } from "src/app/shared/modules/comments/store/reducers";
 
 
@@ -23,7 +24,7 @@ const components = [
   imports: [
     CommonModule,
     StoreModule.forFeature('comments', reducer),
-    EffectsModule.forFeature([CommentSaveEffect]),
+    EffectsModule.forFeature([CommentSaveEffect, CommentsGetEffect]),
     BackendErrorMessagesModule,
     ReactiveFormsModule,
     RouterModule

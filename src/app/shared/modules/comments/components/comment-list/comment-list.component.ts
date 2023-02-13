@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { getCommentsAction } from 'src/app/shared/modules/comments/store/actions/comments-get.action';
 import { dataCommentSelector } from 'src/app/shared/modules/comments/store/selectors';
 import { CommentInterface } from 'src/app/shared/modules/comments/types/comment.interface';
 
@@ -18,9 +19,14 @@ export class CommentListComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeValues()
+    this.getComments()
   }
 
   initializeValues() {
     this.comments$ = this.store.pipe(select(dataCommentSelector))
+  }
+
+  getComments() {
+    this.store.dispatch(getCommentsAction({ slug: this.articleSlugProps }))
   }
 }
