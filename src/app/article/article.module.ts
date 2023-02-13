@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
+import { CommentsModule } from "src/app/shared/modules/comments/comments.module";
 import { ErrorMessageModule } from "src/app/shared/modules/error-message/error-message.module";
 import { LoadingModule } from "src/app/shared/modules/loading/loading.module";
 import { ArticleService as SharedArticleService } from "src/app/shared/services/article.service";
@@ -22,7 +23,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CommonModule, StoreModule.forFeature('article', reducer), EffectsModule.forFeature([GetArticleEffect, DeleteArticleEffect]), RouterModule.forChild(routes), LoadingModule, ErrorMessageModule, TagsListModule],
+  imports: [CommonModule, StoreModule.forFeature('article', reducer), EffectsModule.forFeature([GetArticleEffect, DeleteArticleEffect]), RouterModule.forChild(routes), LoadingModule, ErrorMessageModule, TagsListModule, CommentsModule],
   declarations: [
     ArticleComponent
   ],
